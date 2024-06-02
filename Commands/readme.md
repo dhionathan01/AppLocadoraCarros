@@ -8,3 +8,7 @@ Criando model controller e migration de modelo:
 Criando o model, factory, migration, seeder, controller de Carro com uma unica instrução:
 `$ php artisan make:model --all  Carro`
 ![alt text](image-2.png)
+
+Criando o model, factory, migration, seeder, controller de Cliente com uma unica instrução:
+`$ php artisan make:model --all  Cliente`
+![alt text](image-3.png)
