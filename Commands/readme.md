@@ -12,3 +12,6 @@ Criando o model, factory, migration, seeder, controller de Carro com uma unica i
 Criando o model, factory, migration, seeder, controller de Cliente com uma unica instrução:
 `$ php artisan make:model --all  Cliente`
 ![alt text](image-3.png)
+Criando o model, factory, migration, seeder, controller de Cliente com uma unica instrução:
+`$ php artisan make:model -a  Locacao`
+![alt text](image-4.png)
