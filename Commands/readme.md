@@ -15,3 +15,12 @@ Criando o model, factory, migration, seeder, controller de Cliente com uma unica
 Criando o model, factory, migration, seeder, controller de Cliente com uma unica instrução:
 `$ php artisan make:model -a  Locacao`
 ![alt text](image-4.png)
+
+* Criando banco de dados:
+`CREATE DATABASE lc; `
+![alt text](image-5.png)
+*Definindo banco lc no .env*
+* Executando as migrates:
+`php artisan migrate`
+![alt text](image-6.png)
+![alt text](image-7.png)
