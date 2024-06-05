@@ -22,4 +22,4 @@ Route::apiResource('cliente', 'App\Http\Controllers\ClienteController');
 Route::apiResource('Carro', 'App\Http\Controllers\CarroController');
 Route::apiResource('locacao', 'App\Http\Controllers\LocacaoController');
 Route::apiResource('marca', 'App\Http\Controllers\MarcaController');
-Route::apiResource('modelo', 'App\Http\Controllers\modeloController');
+Route::apiResource('modelo', 'App\Http\Controllers\ModeloController');
