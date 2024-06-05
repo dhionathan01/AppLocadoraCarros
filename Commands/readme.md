@@ -24,3 +24,6 @@ Criando o model, factory, migration, seeder, controller de Cliente com uma unica
 `php artisan migrate`
 ![alt text](image-6.png)
 ![alt text](image-7.png)
+
+* Fazendo um post com o Postman para api:
+![alt text](image-8.png)
