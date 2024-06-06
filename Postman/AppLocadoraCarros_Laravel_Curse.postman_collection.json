@@ -122,6 +122,22 @@
 					"body": "{\n    \"nome\": \"Volkswagen\",\n    \"imagem\": \"imagem_logo_volkswagen.png\",\n    \"updated_at\": \"2024-06-05T12:21:19.000000Z\",\n    \"created_at\": \"2024-06-05T12:21:19.000000Z\",\n    \"id\": 2\n}"
 				}
 			]
+		},
+		{
+			"name": "GetAllMarcas",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "GetMarca",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }
