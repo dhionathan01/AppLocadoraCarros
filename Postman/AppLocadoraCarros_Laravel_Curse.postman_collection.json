@@ -138,6 +138,73 @@
 				"header": []
 			},
 			"response": []
+		},
+		{
+			"name": "updateMarca",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nome",
+							"value": "Volkswagen - Update",
+							"type": "text"
+						},
+						{
+							"key": "imagem",
+							"value": "imagem_logo_Volkswagen.jpeg",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/marca/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"marca",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateNomeMarca",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nome",
+							"value": "Volkswagen - Patch",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/marca/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"marca",
+						"2"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
