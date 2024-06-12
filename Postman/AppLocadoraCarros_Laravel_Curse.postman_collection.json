@@ -209,8 +209,24 @@
 		{
 			"name": "deleteMarca",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:8000/api/marca/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"marca",
+						"5"
+					]
+				}
 			},
 			"response": []
 		}
