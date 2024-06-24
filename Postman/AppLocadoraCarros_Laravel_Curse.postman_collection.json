@@ -61,7 +61,13 @@
 			"name": "updateMarca",
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
@@ -78,7 +84,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/marca/2",
+					"raw": "http://localhost:8000/api/marca/4",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -87,7 +93,7 @@
 					"path": [
 						"api",
 						"marca",
-						"2"
+						"4"
 					]
 				}
 			},
@@ -143,6 +149,47 @@
 						"api",
 						"marca",
 						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "uploadArquivosRequest",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nome",
+							"value": "Hyundai",
+							"type": "text"
+						},
+						{
+							"key": "imagem",
+							"type": "file",
+							"src": "/C:/Users/dhion_26s925f/Downloads/imagens_marcas/imagens_marcas/hyundai.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/marca",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"marca"
 					]
 				}
 			},

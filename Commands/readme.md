@@ -31,3 +31,5 @@ Criando o model, factory, migration, seeder, controller de Cliente com uma unica
 * É necessário nos headers informar que o client aceita uma requisição json
 ![alt text](image-9.png)
   
+  * Enviando arquivos pelo postman e fazendo a leitura pela API:
+  ![alt text](image-10.png)
