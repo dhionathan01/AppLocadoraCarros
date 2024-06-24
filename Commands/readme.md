@@ -27,4 +27,7 @@ Criando o model, factory, migration, seeder, controller de Cliente com uma unica
 
 * Fazendo um post com o Postman para api:
 ![alt text](image-8.png)
-teste git
+* Tratando o método stateless de redirect do validate do laravel, para quando for api,retornar um json e não um redirect:
+* É necessário nos headers informar que o client aceita uma requisição json
+![alt text](image-9.png)
+  
