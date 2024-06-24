@@ -82,14 +82,23 @@ class MarcaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //print_r($request->all()); // os dados atualizados
-        //echo "<hr>";
-        //print_r($marca->getAttributes()); // dados antigos
         $marca = $this->marca->find($id);
         if($marca === null){
             return response()->json(['erro' => 'Impossível realizar a atualização. O recurso solicitado não existe'], 404);
         }
-        $request->validate($marca->rules(), $marca->feedback());
+        if($request->method() === 'PATCH'){
+            $regrasDinamicas = array();
+            // Percorrendo todas as regras definidas no model
+            foreach($marca->rules() as $input => $regra){
+                // Coletar apenas as regras aplicáveis  aos parametros parcias da requisição
+                if(array_key_exists($input, $request->all())){
+                    $regrasDinamicas[$input] = $regra;
+                }
+            }
+            $request->validate($regrasDinamicas, $marca->feedback());
+        }else{
+            $request->validate($marca->rules(), $marca->feedback());
+        }
         $marca->update($request->all());
         return response()->json($marca, 200);
     }
