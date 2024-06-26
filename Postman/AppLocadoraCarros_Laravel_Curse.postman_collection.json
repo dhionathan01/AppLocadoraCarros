@@ -194,6 +194,14 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "getArquivosImagem",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }

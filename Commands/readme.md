@@ -35,3 +35,7 @@ Criando o model, factory, migration, seeder, controller de Cliente com uma unica
   ![alt text](image-10.png)
 * Salvando imagens no diretório storange:
 ![alt text](image-11.png)
+* Criando um link simbólico para acessar as imagens no diretório público:
+*``
+* ![alt text](image-12.png)
+* ![alt text](image-13.png)
