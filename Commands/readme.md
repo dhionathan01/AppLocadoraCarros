@@ -33,3 +33,5 @@ Criando o model, factory, migration, seeder, controller de Cliente com uma unica
   
   * Enviando arquivos pelo postman e fazendo a leitura pela API:
   ![alt text](image-10.png)
+* Salvando imagens no diretório storange:
+![alt text](image-11.png)
