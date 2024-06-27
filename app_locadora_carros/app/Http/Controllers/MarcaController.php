@@ -42,20 +42,10 @@ class MarcaController extends Controller
     {
 
         $request->validate($this->marca->rules(), $this->marca->feedback());
-        //stateless
-        // Formas de visualizar os input file e comum
-
-        //dd($request);
-        //dd($request->nome);
-        //dd($request->get('nome'));
-        //dd($request->input('nome'));
-
-        //dd($request->imagem);
-        /* dd($request->file('imagem')); */
         $imagem = $request->file('imagem');
-        $imagem->store('imagens', 'public');
-        dd('Upload Arquivos');
-        /* $marca = $this->marca->create($request->all()); */
+        $imagem_urn = $imagem->store('imagens', 'public');
+
+        $marca = $this->marca->create(['nome' => $request->nome, 'imagem' => $imagem_urn]);
        return response()->json($marca, 201) ;
     }
 
@@ -111,7 +101,10 @@ class MarcaController extends Controller
         }else{
             $request->validate($marca->rules(), $marca->feedback());
         }
-        $marca->update($request->all());
+        $imagem = $request->file('imagem');
+        $imagem_urn = $imagem->store('imagens', 'public');
+
+        $marca->update(['nome' => $request->nome, 'imagem' => $imagem_urn]);
         return response()->json($marca, 200);
     }
 

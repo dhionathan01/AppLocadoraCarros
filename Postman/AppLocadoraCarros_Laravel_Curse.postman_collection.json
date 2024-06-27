@@ -202,6 +202,53 @@
 				"header": []
 			},
 			"response": []
+		},
+		{
+			"name": "updateImagemLogo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nome",
+							"value": "Ford",
+							"type": "text"
+						},
+						{
+							"key": "imagem",
+							"type": "file",
+							"src": "/C:/Users/dhion_26s925f/Downloads/imagens_marcas/imagens_marcas/ford.png"
+						},
+						{
+							"key": "_method",
+							"value": "put",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/marca/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"marca",
+						"3"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

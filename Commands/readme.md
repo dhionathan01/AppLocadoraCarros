@@ -39,3 +39,5 @@ Criando o model, factory, migration, seeder, controller de Cliente com uma unica
 *``
 * ![alt text](image-12.png)
 * ![alt text](image-13.png)
+* Atualizando imagens da marca:
+![alt text](image-14.png)
