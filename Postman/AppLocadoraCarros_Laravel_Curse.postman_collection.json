@@ -325,7 +325,7 @@
 			"response": []
 		},
 		{
-			"name": "updateModelo",
+			"name": "updateModeloPut",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -340,43 +340,48 @@
 					"formdata": [
 						{
 							"key": "marca_id",
-							"value": "",
+							"value": "8",
 							"type": "text"
 						},
 						{
 							"key": "nome",
-							"value": "",
+							"value": "HB20S teste",
 							"type": "text"
 						},
 						{
 							"key": "imagem",
-							"value": "",
-							"type": "text"
+							"type": "file",
+							"src": "/C:/Users/dhion_26s925f/Downloads/imagens_modelos/imagens_modelos/hyundai_hb20s_1_0.png"
 						},
 						{
 							"key": "numero_portas",
-							"value": "",
+							"value": "4",
 							"type": "text"
 						},
 						{
 							"key": "lugares",
-							"value": "",
+							"value": "5",
 							"type": "text"
 						},
 						{
 							"key": "air_bag",
-							"value": "",
+							"value": "1",
 							"type": "text"
 						},
 						{
 							"key": "abs",
-							"value": "",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "_method",
+							"value": "put",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/modelo",
+					"raw": "http://localhost:8000/api/modelo/5",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -384,7 +389,97 @@
 					"port": "8000",
 					"path": [
 						"api",
-						"modelo"
+						"modelo",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateModeloPatch",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "_method",
+							"value": "patch",
+							"type": "text"
+						},
+						{
+							"key": "imagem",
+							"type": "file",
+							"src": "/C:/Users/dhion_26s925f/Downloads/imagens_modelos/imagens_modelos/hyundai_hb20s_1_0.png"
+						},
+						{
+							"key": "nome",
+							"value": "HB20S",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/modelo/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"modelo",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateMarcaPatch",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "_method",
+							"value": "patch",
+							"type": "text"
+						},
+						{
+							"key": "imagem",
+							"type": "file",
+							"src": "/C:/Users/dhion_26s925f/Downloads/imagens_marcas/imagens_marcas/ford.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/marca/14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"marca",
+						"14"
 					]
 				}
 			},
