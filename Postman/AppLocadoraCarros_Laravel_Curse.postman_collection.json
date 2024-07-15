@@ -249,6 +249,185 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "getAllModelo",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "storeModelo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "marca_id",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "nome",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "imagem",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "numero_portas",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "lugares",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "air_bag",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "abs",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/modelo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"modelo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateModelo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "marca_id",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "nome",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "imagem",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "numero_portas",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "lugares",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "air_bag",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "abs",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/modelo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"modelo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteModelo",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/modelo/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"modelo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getModelo",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }
