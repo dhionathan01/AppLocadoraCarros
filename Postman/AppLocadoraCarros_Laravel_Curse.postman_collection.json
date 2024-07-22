@@ -531,6 +531,14 @@
 				"header": []
 			},
 			"response": []
+		},
+		{
+			"name": "getModeloComFiltros",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }
