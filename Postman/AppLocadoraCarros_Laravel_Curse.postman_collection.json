@@ -571,6 +571,40 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "getMarcasComFiltros",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/marca?atributos=id,nome,imagem&atributos_modelos=id,marca_id,nome&filtro=nome:like:H%;id:=:16",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"marca"
+					],
+					"query": [
+						{
+							"key": "atributos",
+							"value": "id,nome,imagem"
+						},
+						{
+							"key": "atributos_modelos",
+							"value": "id,marca_id,nome"
+						},
+						{
+							"key": "filtro",
+							"value": "nome:like:H%;id:=:16"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
