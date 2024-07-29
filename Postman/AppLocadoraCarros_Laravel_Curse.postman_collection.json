@@ -536,7 +536,39 @@
 			"name": "getModeloComFiltros",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/modelo?atributos=nome,numero_portas,abs,marca_id&atributos_marca=nome&filtro=abs:=:1;nome:like:Ford%;numero_portas:=:4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"modelo"
+					],
+					"query": [
+						{
+							"key": "atributos",
+							"value": "nome,numero_portas,abs,marca_id"
+						},
+						{
+							"key": "atributos_marca",
+							"value": "nome"
+						},
+						{
+							"key": "filtro",
+							"value": "abs:=:1;nome:like:Ford%;numero_portas:=:4"
+						}
+					]
+				}
 			},
 			"response": []
 		}
