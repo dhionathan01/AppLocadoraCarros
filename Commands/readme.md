@@ -41,3 +41,6 @@ Criando o model, factory, migration, seeder, controller de Cliente com uma unica
 * ![alt text](image-13.png)
 * Atualizando imagens da marca:
 ![alt text](image-14.png)
+* Criando controller para Autenticação JWT
+`php artisan make:controller AuthController`
+![alt text](image-15.png)
