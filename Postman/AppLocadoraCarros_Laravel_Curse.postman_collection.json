@@ -1137,9 +1137,15 @@
 			"name": "getCliente",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8000/api/cliente/1",
+					"raw": "http://localhost:8000/api/cliente/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1148,7 +1154,7 @@
 					"path": [
 						"api",
 						"cliente",
-						"1"
+						"2"
 					]
 				}
 			},
@@ -1199,7 +1205,7 @@
 		{
 			"name": "deleteLocacao",
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
 				"url": {
 					"raw": "http://localhost:8000/api/locacao/1",
@@ -1239,7 +1245,7 @@
 							"type": "text"
 						},
 						{
-							"key": "senha",
+							"key": "password",
 							"value": "1234",
 							"type": "text"
 						}
