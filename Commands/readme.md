@@ -50,3 +50,6 @@ Criando o model, factory, migration, seeder, controller de Cliente com uma unica
 
 * Passando jwt nos headers como authorization:
 ![alt text](image-17.png)
+
+* Recuperando dados do usuario logado com JWT
+![alt text](image-18.png)
