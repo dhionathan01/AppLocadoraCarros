@@ -47,3 +47,6 @@ Criando o model, factory, migration, seeder, controller de Cliente com uma unica
 
 * Criando um usuário pelo tinker
 ![alt text](image-16.png)
+
+* Passando jwt nos headers como authorization:
+![alt text](image-17.png)
