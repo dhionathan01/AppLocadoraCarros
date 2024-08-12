@@ -1116,9 +1116,15 @@
 			"name": "getCarro",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8000/api/Carro/1",
+					"raw": "http://localhost:8000/api/Carro/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1127,7 +1133,7 @@
 					"path": [
 						"api",
 						"Carro",
-						"1"
+						"2"
 					]
 				}
 			},
@@ -1142,10 +1148,15 @@
 						"key": "accept",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTcyMzIwNTA1MSwiZXhwIjoxNzIzMjA4NjUxLCJuYmYiOjE3MjMyMDUwNTEsImp0aSI6Ikw1aFlkWVA1bTY0eDExZWoiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.owpx7IAdVxhv09ivOs-ITetmBiITTePoK93XWIzrcOc",
+						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/api/cliente/2",
+					"raw": "http://localhost:8000/api/v1/Cliente/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1153,7 +1164,8 @@
 					"port": "8000",
 					"path": [
 						"api",
-						"cliente",
+						"v1",
+						"Cliente",
 						"2"
 					]
 				}
@@ -1227,7 +1239,18 @@
 			"name": "refresh",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTcyMzIwNjg5OCwiZXhwIjoxNzIzMjEwNDk4LCJuYmYiOjE3MjMyMDY4OTgsImp0aSI6InRIeEZPaUJEa3cxVFdnTEQiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.eah4m1nuqFT26Xa0a5Rtr2q5BzoswX6LpbHCZYyHLuw",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8000/api/v1/refresh",
 					"protocol": "http",
@@ -1248,7 +1271,13 @@
 			"name": "login",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
@@ -1306,6 +1335,77 @@
 						"api",
 						"v1",
 						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTcyMzQ2NTQ4NSwiZXhwIjoxNzIzNDY5MDg1LCJuYmYiOjE3MjM0NjU0ODUsImp0aSI6IktFOHZuZGh2enNZU2hlZkgiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.e8uZEiw39tyELOWf0ZyPTlzZzExRukFrBd9Om8yrZFk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"logout"
+					],
+					"query": [
+						{
+							"key": "Accept",
+							"value": "applica",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getModelo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTcyMzQ2NTQ4NSwiZXhwIjoxNzIzNDY5MDg1LCJuYmYiOjE3MjM0NjU0ODUsImp0aSI6IktFOHZuZGh2enNZU2hlZkgiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.e8uZEiw39tyELOWf0ZyPTlzZzExRukFrBd9Om8yrZFk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/modelo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"modelo"
 					]
 				}
 			},
