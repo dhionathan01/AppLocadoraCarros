@@ -53,3 +53,6 @@ Criando o model, factory, migration, seeder, controller de Cliente com uma unica
 
 * Recuperando dados do usuario logado com JWT
 ![alt text](image-18.png)
+
+* Definindo variável global JWT_TTL para 120 para que a o token jwt dure 120 minutos  e não 60 que pe o valor padrão
+![alt text](image-19.png)
