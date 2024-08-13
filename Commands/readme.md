@@ -56,3 +56,21 @@ Criando o model, factory, migration, seeder, controller de Cliente com uma unica
 
 * Definindo variável global JWT_TTL para 120 para que a o token jwt dure 120 minutos  e não 60 que pe o valor padrão
 ![alt text](image-19.png)
+
+Instalando laravel ui para começar a trabalhar com vueJs
+`php composer.phar laravel/ui:^3.2.1`
+![alt text](image-20.png)
+
+Intalando o vueJs com autenticação nativa do laravel:
+`$ php artisan ui vue --auth`
+
+Fazendo a instação dos pacotes:
+`npm install`
+![alt text](image-21.png)
+
+Fazendo o build das views
+`npm run dev`
+
+instalando o vue loader:
+`npm install vue-loader@^15.9.8 --save-dev --legacy-peer-deps`
+![alt text](image-22.png)
