@@ -3,9 +3,8 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <!--  Início do card de busca -->
-                <div class="card mb-3" id="card_busca">
-                    <div class="card-header">Busca de marcas</div>
-                    <div class="card-body">
+                <card-component titulo="Busca de marcas">
+                    <template v-slot:conteudo>
                         <div class="row">
                             <div class="col mb-3">
                                 <input-container-component titulo="ID" id="inputId" id-help="idHelp"
@@ -22,22 +21,23 @@
                                 </input-container-component>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary btn-sm float-end">Pesquisar</button>
-                    </div>
-                </div>
+                    </template>
+                    <template v-slot:rodape>
+                        <button type="button" class="btn btn-primary btn-sm float-end">Pesquisar</button>
+
+                    </template>
+                </card-component>
                 <!-- Fim do card de busca -->
                 <!-- Inicio do card de listagem de marcas -->
-                <div class="card" id="listagem_marcas">
-                    <div class="card-header">Relação de marcas</div>
-                    <div class="card-body">
+                <card-component titulo="Relação de marcas">
+                    <template v-slot:conteudo>
                         <table-component></table-component>
-                    </div>
-                    <div class="card-footer">
+                    </template>
+
+                    <template v-slot:rodape>
                         <button type="button" class="btn btn-primary btn-sm float-end">Adicionar</button>
-                    </div>
-                </div>
+                    </template>
+                </card-component>
                 <!--  Fim do card de listagem de marcas -->
             </div>
         </div>
