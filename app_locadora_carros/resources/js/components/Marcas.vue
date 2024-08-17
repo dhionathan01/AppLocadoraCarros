@@ -70,6 +70,8 @@
 </template>
 
 <script>
+import { computed } from 'vue';
+
     export default {
         data() {
             return {
@@ -78,6 +80,16 @@
                 arquivoImagem: []
             }
         },
+        computed: {
+            token() {
+                let token = document.cookie.split(';').find(indice => {
+                    return indice.includes('token=')
+                });
+                token = token.split('=')[1]
+                token = 'Bearer ' + token;
+                    return token;
+                }
+            },
         methods: {
             carregarImagem(event) {
                 this.arquivoImagem = event.target.files;
@@ -91,7 +103,8 @@
                 let config = {
                     headers: {
                         'Content-Type': 'multipart/form-data',
-                        'Accept': 'application/json'
+                        'Accept': 'application/json',
+                        'Authorization': this.token
                     }
                 }
                 axios.post(this.urlBase, formData, config)

@@ -5182,6 +5182,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -5189,6 +5190,16 @@ __webpack_require__.r(__webpack_exports__);
       nomeMarca: '',
       arquivoImagem: []
     };
+  },
+  computed: {
+    token: function token() {
+      var token = document.cookie.split(';').find(function (indice) {
+        return indice.includes('token=');
+      });
+      token = token.split('=')[1];
+      token = 'Bearer ' + token;
+      return token;
+    }
   },
   methods: {
     carregarImagem: function carregarImagem(event) {
@@ -5202,7 +5213,8 @@ __webpack_require__.r(__webpack_exports__);
       var config = {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Authorization': this.token
         }
       };
       axios.post(this.urlBase, formData, config).then(function (response) {
