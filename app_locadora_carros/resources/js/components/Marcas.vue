@@ -16,7 +16,7 @@
                             <div class="col mb-3">
                                 <input-container-component titulo="Nome da marca" id="inputNome" id-help="nomeHelp"
                                     texto-ajuda="Opcional. Informe o nome da marca">
-                                    <input type="number" class="form-control" id="inputId" aria-describedby="nomeHelp"
+                                    <input type="text" class="form-control" id="inputId" aria-describedby="nomeHelp"
                                         placeholder="Nome da marca">
                                 </input-container-component>
                             </div>
@@ -35,13 +35,35 @@
                     </template>
 
                     <template v-slot:rodape>
-                        <button type="button" class="btn btn-primary btn-sm float-end"  data-bs-toggle="modal" data-bs-target="#modalMarca">Adicionar</button>
+                        <button type="button" class="btn btn-primary btn-sm float-end" data-bs-toggle="modal"
+                            data-bs-target="#modalMarca">Adicionar</button>
                     </template>
                 </card-component>
                 <!--  Fim do card de listagem de marcas -->
             </div>
         </div>
-        <modal-component id="modalMarca" titulo="Adicionar marca"></modal-component>
+        <modal-component id="modalMarca" titulo="Adicionar marca">
+            <template v-slot:conteudo>
+                <div class="form-group">
+                    <input-container-component titulo="Nome da marca" id="novoNome" id-help="novoNomeHelp"
+                        texto-ajuda="Opcional. Informe o nome da marca">
+                        <input type="text" class="form-control" id="inputId" aria-describedby="novoNomeHelp"
+                            placeholder="Nome da marca">
+                    </input-container-component>
+                </div>
+                <div class="form-group">
+                    <input-container-component titulo="Imagem" id="novoImagem" id-help="novoImagemHelp"
+                        texto-ajuda="Selecione uma imagem no formato PNG">
+                        <input type="file" class="form-control" id="inputId" aria-describedby="novoImagemHelp"
+                            placeholder="Selecione uma imagem">
+                    </input-container-component>
+                </div>
+            </template>
+            <template v-slot:rodape>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary">Salvar</button>
+            </template>
+        </modal-component>
     </div>
 </template>
 
