@@ -5204,7 +5204,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -5212,7 +5211,8 @@ __webpack_require__.r(__webpack_exports__);
       nomeMarca: '',
       arquivoImagem: [],
       transacaoStatus: '',
-      transacaoDetalhes: []
+      transacaoDetalhes: [],
+      marcas: []
     };
   },
   computed: {
@@ -5226,11 +5226,20 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    carregarLista: function carregarLista() {
+      var _this = this;
+      axios.get(this.urlBase).then(function (response) {
+        _this.marcas = response.data;
+        console.log(_this.marcas);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     carregarImagem: function carregarImagem(event) {
       this.arquivoImagem = event.target.files;
     },
     salvar: function salvar() {
-      var _this = this;
+      var _this2 = this;
       console.log(this.nomeMarca, this.arquivoImagem[0]);
       var formData = new FormData();
       formData.append('nome', this.nomeMarca);
@@ -5243,20 +5252,23 @@ __webpack_require__.r(__webpack_exports__);
         }
       };
       axios.post(this.urlBase, formData, config).then(function (response) {
-        _this.transacaoStatus = 'adicionado';
-        _this.transacaoDetalhes = {
+        _this2.transacaoStatus = 'adicionado';
+        _this2.transacaoDetalhes = {
           mensagem: 'ID do registro: ' + response.data.id
         };
         console.log(response);
       })["catch"](function (errors) {
-        _this.transacaoStatus = 'erro';
-        _this.transacaoDetalhes = {
+        _this2.transacaoStatus = 'erro';
+        _this2.transacaoDetalhes = {
           mensagem: errors.response.data.message,
           dados: errors.response.data.errors
         };
         /* errors.response.data.message */
       });
     }
+  },
+  mounted: function mounted() {
+    this.carregarLista();
   }
 });
 

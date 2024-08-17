@@ -74,8 +74,6 @@
 </template>
 
 <script>
-import { computed } from 'vue';
-
     export default {
         data() {
             return {
@@ -83,7 +81,8 @@ import { computed } from 'vue';
                 nomeMarca: '',
                 arquivoImagem: [],
                 transacaoStatus: '',
-                transacaoDetalhes: []
+                transacaoDetalhes: [],
+                marcas: []
             }
         },
         computed: {
@@ -96,7 +95,17 @@ import { computed } from 'vue';
                     return token;
                 }
             },
-        methods: {
+         methods: {
+             carregarLista() {
+                 axios.get(this.urlBase)
+                     .then(response => {
+                        this.marcas = response.data
+                         console.log(this.marcas)
+                     })
+                     .catch(error => {
+                        console.log(error);
+                     })
+            },
             carregarImagem(event) {
                 this.arquivoImagem = event.target.files;
 
@@ -131,6 +140,9 @@ import { computed } from 'vue';
                         /* errors.response.data.message */
                     })
             }
+         },
+        mounted() {
+            this.carregarLista();
         }
     }
 </script>
