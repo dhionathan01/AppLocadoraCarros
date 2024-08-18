@@ -31,7 +31,7 @@
                 <!-- Inicio do card de listagem de marcas -->
                 <card-component titulo="Relação de marcas">
                     <template v-slot:conteudo>
-                        <table-component></table-component>
+                        <table-component :dados="marcas" :titulos="['id', 'nome', 'imagem', 'created_at']"></table-component>
                     </template>
 
                     <template v-slot:rodape>
@@ -105,8 +105,9 @@
                 }
                  axios.get(this.urlBase, config)
                      .then(response => {
-                        this.marcas = response.data
-                         console.log(this.marcas)
+                         this.marcas = response.data
+                        console.log(this.marcas)
+
                      })
                      .catch(error => {
                         console.log(error);
