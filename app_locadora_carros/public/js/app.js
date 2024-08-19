@@ -5208,12 +5208,18 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       urlBase: 'http://localhost:8000/api/v1/marca',
+      urlPaginacao: '',
+      urlFiltro: '',
       nomeMarca: '',
       arquivoImagem: [],
       transacaoStatus: '',
       transacaoDetalhes: [],
       marcas: {
         data: []
+      },
+      busca: {
+        id: '',
+        nome: ''
       }
     };
   },
@@ -5228,21 +5234,41 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    pesquisar: function pesquisar() {
+      var filtro = '';
+      for (var chave in this.busca) {
+        if (this.busca[chave]) {
+          if (filtro != '') {
+            filtro += ';';
+          }
+          filtro += "".concat(chave, ":like:").concat(this.busca[chave]);
+        }
+      }
+      if (filtro != '') {
+        this.urlPaginacao = "&page=1";
+        this.urlFiltro = "&filtro=".concat(filtro);
+      } else {
+        this.urlFiltro = '';
+      }
+      this.carregarLista(); // requisitando novamente os dados para nossa API
+    },
     paginacao: function paginacao(link_paginate) {
       if (link_paginate.url) {
-        this.urlBase = link_paginate.url; // ajustando a url de consulta com o parâmetro da página
+        this.urlPaginacao = link_paginate.url.split('?')[1];
+        /* this.urlBase = link_paginate.url */ // ajustando a url de consulta com o parâmetro da página
         this.carregarLista(); // requisitando novamente os dados para nossa API
       }
     },
     carregarLista: function carregarLista() {
       var _this = this;
+      var url = "".concat(this.urlBase, "?").concat(this.urlPaginacao).concat(this.urlFiltro);
       var config = {
         headers: {
           'Accept': 'application/json',
           'Authorization': this.token
         }
       };
-      axios.get(this.urlBase, config).then(function (response) {
+      axios.get(url, config).then(function (response) {
         _this.marcas = response.data;
       })["catch"](function (error) {});
     },
@@ -5727,12 +5753,27 @@ var render = function render() {
             "texto-ajuda": "Opcional. Informe o id da marca"
           }
         }, [_c("input", {
+          directives: [{
+            name: "model",
+            rawName: "v-model",
+            value: _vm.busca.id,
+            expression: "busca.id"
+          }],
           staticClass: "form-control",
           attrs: {
             type: "number",
             id: "inputId",
             "aria-describedby": "idHelp",
             placeholder: "ID"
+          },
+          domProps: {
+            value: _vm.busca.id
+          },
+          on: {
+            input: function input($event) {
+              if ($event.target.composing) return;
+              _vm.$set(_vm.busca, "id", $event.target.value);
+            }
           }
         })])], 1), _vm._v(" "), _c("div", {
           staticClass: "col mb-3"
@@ -5744,12 +5785,27 @@ var render = function render() {
             "texto-ajuda": "Opcional. Informe o nome da marca"
           }
         }, [_c("input", {
+          directives: [{
+            name: "model",
+            rawName: "v-model",
+            value: _vm.busca.nome,
+            expression: "busca.nome"
+          }],
           staticClass: "form-control",
           attrs: {
             type: "text",
             id: "inputId",
             "aria-describedby": "nomeHelp",
             placeholder: "Nome da marca"
+          },
+          domProps: {
+            value: _vm.busca.nome
+          },
+          on: {
+            input: function input($event) {
+              if ($event.target.composing) return;
+              _vm.$set(_vm.busca, "nome", $event.target.value);
+            }
           }
         })])], 1)])];
       },
@@ -5761,6 +5817,11 @@ var render = function render() {
           staticClass: "btn btn-primary btn-sm float-end",
           attrs: {
             type: "button"
+          },
+          on: {
+            click: function click($event) {
+              return _vm.pesquisar();
+            }
           }
         }, [_vm._v("Pesquisar")])];
       },
