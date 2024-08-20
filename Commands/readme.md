@@ -74,3 +74,7 @@ Fazendo o build das views
 instalando o vue loader:
 `npm install vue-loader@^15.9.8 --save-dev --legacy-peer-deps`
 ![alt text](image-22.png)
+
+instalando o pacote vueX no projeto:
+`npm install vuex@3.6.2`
+![alt text](image-23.png)
