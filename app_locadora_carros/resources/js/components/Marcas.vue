@@ -93,6 +93,16 @@
                 <button type="button" class="btn btn-primary" @click="salvar()">Salvar</button>
             </template>
         </modal-component>
+        <modal-component id="modalMarcaVisualizar" titulo="Visualizar marca">
+            <template v-slot:alertas></template>
+            <template v-slot:conteudo>
+                Teste
+            </template>
+            <template v-slot:rodape>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </template>
+        </modal-component>
+
     </div>
 </template>
 
