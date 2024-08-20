@@ -32,7 +32,7 @@
                 <card-component titulo="Relação de marcas">
                     <template v-slot:conteudo>
                         <table-component :dados="marcas.data"
-                        :visualizar="true"
+                        :visualizar="{visivel: true, dataToggle: 'modal', dataTarget:'#modalMarcaVisualizar'}"
                         :atualizar="false"
                         :remover="false"
                         :titulos="{

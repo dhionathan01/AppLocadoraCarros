@@ -5837,7 +5837,11 @@ var render = function render() {
         return [_c("table-component", {
           attrs: {
             dados: _vm.marcas.data,
-            visualizar: true,
+            visualizar: {
+              visivel: true,
+              dataToggle: "modal",
+              dataTarget: "#modalMarcaVisualizar"
+            },
             atualizar: false,
             remover: false,
             titulos: {
@@ -6149,7 +6153,7 @@ var render = function render() {
         scope: "col"
       }
     }, [_vm._v(_vm._s(t.titulo))]);
-  }), _vm._v(" "), _vm.visualizar || _vm.atualizar || _vm.remover ? _c("th") : _vm._e()], 2)]), _vm._v(" "), _c("tbody", _vm._l(_vm.dadosFiltrados, function (obj, chave) {
+  }), _vm._v(" "), _vm.visualizar.visivel || _vm.atualizar || _vm.remover ? _c("th") : _vm._e()], 2)]), _vm._v(" "), _c("tbody", _vm._l(_vm.dadosFiltrados, function (obj, chave) {
     return _c("tr", {
       key: chave
     }, [_vm._l(obj, function (valor, chaveValor) {
@@ -6162,11 +6166,11 @@ var render = function render() {
           height: "30"
         }
       })]) : _vm._e()]);
-    }), _vm._v(" "), _vm.visualizar || _vm.atualizar || _vm.remover ? _c("td", [_vm.visualizar ? _c("button", {
+    }), _vm._v(" "), _vm.visualizar.visivel || _vm.atualizar || _vm.remover ? _c("td", [_vm.visualizar.visivel ? _c("button", {
       staticClass: "btn btn-outline-primary btn-sm",
       attrs: {
-        "data-bs-toggle": "modal",
-        "data-bs-target": "#modalMarcaVisualizar"
+        "data-bs-toggle": _vm.visualizar.dataToggle,
+        "data-bs-target": _vm.visualizar.dataTarget
       }
     }, [_vm._v("Visualizar")]) : _vm._e(), _vm._v(" "), _vm.atualizar ? _c("button", {
       staticClass: "btn btn-outline-primary btn-sm"
