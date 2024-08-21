@@ -34,7 +34,7 @@
                         <table-component :dados="marcas.data"
                         :visualizar="{visivel: true, dataToggle: 'modal', dataTarget:'#modalMarcaVisualizar'}"
                         :atualizar="false"
-                        :remover="false"
+                        :remover="{visivel: true, dataToggle: 'modal', dataTarget: '#modalMarcaRemover'}"
                         :titulos="{
                             id: { titulo: 'ID', tipo: 'texto' },
                             nome: { titulo: 'Nome', tipo: 'texto' },
@@ -114,10 +114,29 @@
             </template>
         </modal-component>
 
+        <modal-component id="modalMarcaRemover" titulo="Remover marca">
+            <template v-slot:alertas></template>
+            <template v-slot:conteudo>
+                <input-container-component titulo="ID">
+                    <input type="text" class="form-control" :value="$store.state.item.id" disabled>
+                </input-container-component>
+                <input-container-component titulo="Nome da marca">
+                    <input type="text" class="form-control" :value="$store.state.item.nome" disabled>
+                </input-container-component>
+            </template>
+            <template v-slot:rodape>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-danger"  @click="remover()">Remover</button>
+            </template>
+        </modal-component>
+
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+import { config } from 'vue/types/umd';
+
 export default {
     data() {
         return {
@@ -143,6 +162,29 @@ export default {
         }
     },
     methods: {
+        remover() {
+            let confirmacao = confirm('Tem certeza que deseja remover esse registro ?')
+            if (!confirmacao) return false;
+            console.log('entrei aqui');
+            let url = `${this.urlBase}/${this.$store.state.item.id}`;
+            let formData = new FormData();
+            formData.append('_method', 'delete');
+            let config = {
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': this.token
+                }
+            }
+            console.log(url)
+            axios.post(url, formData, config)
+                .then(response => {
+                    console.log('Registro removido com sucesso', response);
+                    this.carregarLista();
+                })
+                .catch(errors => {
+                    console.log('Erro ao remover registro', errors);
+                })
+        },
         pesquisar() {
             let filtro = ''
             for (let chave in this.busca) {
