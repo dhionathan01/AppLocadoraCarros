@@ -6508,7 +6508,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
       var confirmacao = confirm('Tem certeza que deseja remover esse registro ?');
       if (!confirmacao) return false;
-      console.log('entrei aqui');
       var url = "".concat(this.urlBase, "/").concat(this.$store.state.item.id);
       var formData = new FormData();
       formData.append('_method', 'delete');
@@ -6518,12 +6517,13 @@ __webpack_require__.r(__webpack_exports__);
           'Authorization': this.token
         }
       };
-      console.log(url);
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, formData, config).then(function (response) {
-        console.log('Registro removido com sucesso', response);
+        _this.$store.state.transacao.status = 'sucesso';
+        _this.$store.state.transacao.mensagem = response.data.msg;
         _this.carregarLista();
       })["catch"](function (errors) {
-        console.log('Erro ao remover registro', errors);
+        _this.$store.state.transacao.status = 'erro';
+        _this.$store.state.transacao.mensagem = errors.response.data.erro;
       });
     },
     pesquisar: function pesquisar() {
@@ -6648,6 +6648,8 @@ __webpack_require__.r(__webpack_exports__);
   props: ['dados', 'titulos', 'visualizar', 'atualizar', 'remover'],
   methods: {
     setStore: function setStore(obj) {
+      this.$store.state.transacao.status = "";
+      this.$store.state.transacao.mensagem = "";
       this.$store.state.item = obj;
       console.log(obj);
     }
@@ -6691,7 +6693,7 @@ var render = function render() {
     attrs: {
       role: "alert"
     }
-  }, [_vm._v("\n    " + _vm._s(_vm.titulo) + "\n    "), _c("hr"), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.detalhes.messagem))]), _vm._v(" "), _c("br"), _vm._v(" "), _vm.detalhes.dados ? _c("ul", _vm._l(_vm.detalhes.dados, function (e, key) {
+  }, [_vm._v("\n    " + _vm._s(_vm.titulo) + "\n    "), _c("hr"), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.detalhes.mensagem))]), _vm._v(" "), _c("br"), _vm._v(" "), _vm.detalhes.dados ? _c("ul", _vm._l(_vm.detalhes.dados, function (e, key) {
     return _c("li", {
       key: key
     }, [_vm._v("\n            " + _vm._s(e[0]) + "\n        ")]);
@@ -7394,10 +7396,22 @@ var render = function render() {
     scopedSlots: _vm._u([{
       key: "alertas",
       fn: function fn() {
-        return undefined;
+        return [_vm.$store.state.transacao.status == "sucesso" ? _c("alert-component", {
+          attrs: {
+            tipo: "success",
+            titulo: "Transação realizada com sucesso",
+            detalhes: _vm.$store.state.transacao
+          }
+        }) : _vm._e(), _vm._v(" "), _vm.$store.state.transacao.status == "erro" ? _c("alert-component", {
+          attrs: {
+            tipo: "danger",
+            titulo: "Erro na transação",
+            detalhes: _vm.$store.state.transacao
+          }
+        }) : _vm._e()];
       },
       proxy: true
-    }, {
+    }, _vm.$store.state.transacao.status != "sucesso" ? {
       key: "conteudo",
       fn: function fn() {
         return [_c("input-container-component", {
@@ -7429,7 +7443,7 @@ var render = function render() {
         })])];
       },
       proxy: true
-    }, {
+    } : null, {
       key: "rodape",
       fn: function fn() {
         return [_c("button", {
@@ -7438,7 +7452,7 @@ var render = function render() {
             type: "button",
             "data-bs-dismiss": "modal"
           }
-        }, [_vm._v("Fechar")]), _vm._v(" "), _c("button", {
+        }, [_vm._v("Fechar")]), _vm._v(" "), _vm.$store.state.transacao.status != "sucesso" ? _c("button", {
           staticClass: "btn btn-danger",
           attrs: {
             type: "button"
@@ -7448,10 +7462,10 @@ var render = function render() {
               return _vm.remover();
             }
           }
-        }, [_vm._v("Remover")])];
+        }, [_vm._v("Remover")]) : _vm._e()];
       },
       proxy: true
-    }])
+    }], null, true)
   })], 1);
 };
 var staticRenderFns = [];
@@ -7640,7 +7654,11 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(Vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new Vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
-    item: {}
+    item: {},
+    transacao: {
+      status: '',
+      mensagem: ''
+    }
   }
 });
 
