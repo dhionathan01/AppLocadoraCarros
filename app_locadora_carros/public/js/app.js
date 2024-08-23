@@ -6473,7 +6473,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -6504,8 +6503,32 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    remover: function remover() {
+    atualizar: function atualizar() {
       var _this = this;
+      console.log('nome atualizar', this.$store.state.item.nome);
+      console.log('imagem', this.arquivoImagem);
+      console.log('verbo http: patch');
+      var formData = new FormData();
+      formData.append('_method', 'patch');
+      formData.append('nome', this.$store.state.item.nome);
+      formData.append('imagem', this.arquivoImagem[0]);
+      var url = "".concat(this.urlBase, "/").concat(this.$store.state.item.id);
+      var config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Accept': 'application/json',
+          'Authorization': this.token
+        }
+      };
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, formData, config).then(function (response) {
+        console.log('Atualizado', response);
+        _this.carregarLista();
+      })["catch"](function (errors) {
+        console.log('Erro de atualização', errors.response);
+      });
+    },
+    remover: function remover() {
+      var _this2 = this;
       var confirmacao = confirm('Tem certeza que deseja remover esse registro ?');
       if (!confirmacao) return false;
       var url = "".concat(this.urlBase, "/").concat(this.$store.state.item.id);
@@ -6518,12 +6541,12 @@ __webpack_require__.r(__webpack_exports__);
         }
       };
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, formData, config).then(function (response) {
-        _this.$store.state.transacao.status = 'sucesso';
-        _this.$store.state.transacao.mensagem = response.data.msg;
-        _this.carregarLista();
+        _this2.$store.state.transacao.status = 'sucesso';
+        _this2.$store.state.transacao.mensagem = response.data.msg;
+        _this2.carregarLista();
       })["catch"](function (errors) {
-        _this.$store.state.transacao.status = 'erro';
-        _this.$store.state.transacao.mensagem = errors.response.data.erro;
+        _this2.$store.state.transacao.status = 'erro';
+        _this2.$store.state.transacao.mensagem = errors.response.data.erro;
       });
     },
     pesquisar: function pesquisar() {
@@ -6552,7 +6575,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     carregarLista: function carregarLista() {
-      var _this2 = this;
+      var _this3 = this;
       var url = "".concat(this.urlBase, "?").concat(this.urlPaginacao).concat(this.urlFiltro);
       var config = {
         headers: {
@@ -6561,14 +6584,14 @@ __webpack_require__.r(__webpack_exports__);
         }
       };
       axios__WEBPACK_IMPORTED_MODULE_0___default().get(url, config).then(function (response) {
-        _this2.marcas = response.data;
+        _this3.marcas = response.data;
       })["catch"](function (error) {});
     },
     carregarImagem: function carregarImagem(event) {
       this.arquivoImagem = event.target.files;
     },
     salvar: function salvar() {
-      var _this3 = this;
+      var _this4 = this;
       var formData = new FormData();
       formData.append('nome', this.nomeMarca);
       formData.append('imagem', this.arquivoImagem[0]);
@@ -6580,13 +6603,13 @@ __webpack_require__.r(__webpack_exports__);
         }
       };
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(this.urlBase, formData, config).then(function (response) {
-        _this3.transacaoStatus = 'adicionado';
-        _this3.transacaoDetalhes = {
+        _this4.transacaoStatus = 'adicionado';
+        _this4.transacaoDetalhes = {
           mensagem: 'ID do registro: ' + response.data.id
         };
       })["catch"](function (errors) {
-        _this3.transacaoStatus = 'erro';
-        _this3.transacaoDetalhes = {
+        _this4.transacaoStatus = 'erro';
+        _this4.transacaoDetalhes = {
           mensagem: errors.response.data.message,
           dados: errors.response.data.errors
         };
@@ -7142,7 +7165,11 @@ var render = function render() {
               dataToggle: "modal",
               dataTarget: "#modalMarcaVisualizar"
             },
-            atualizar: false,
+            atualizar: {
+              visivel: true,
+              dataToggle: "modal",
+              dataTarget: "#modalMarcaAtualizar"
+            },
             remover: {
               visivel: true,
               dataToggle: "modal",
@@ -7466,6 +7493,100 @@ var render = function render() {
       },
       proxy: true
     }], null, true)
+  }), _vm._v(" "), _c("modal-component", {
+    attrs: {
+      id: "modalMarcaAtualizar",
+      titulo: "Atualizar marca"
+    },
+    scopedSlots: _vm._u([{
+      key: "alertas",
+      fn: function fn() {
+        return undefined;
+      },
+      proxy: true
+    }, {
+      key: "conteudo",
+      fn: function fn() {
+        return [_c("div", {
+          staticClass: "form-group"
+        }, [_c("input-container-component", {
+          attrs: {
+            titulo: "Nome da marca",
+            id: "novoNome",
+            "id-help": "novoNomeHelp",
+            "texto-ajuda": "Opcional. Informe o nome da marca"
+          }
+        }, [_c("input", {
+          directives: [{
+            name: "model",
+            rawName: "v-model",
+            value: _vm.$store.state.item.nome,
+            expression: "$store.state.item.nome"
+          }],
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            id: "inputId",
+            "aria-describedby": "novoNomeHelp",
+            placeholder: "Nome da marca"
+          },
+          domProps: {
+            value: _vm.$store.state.item.nome
+          },
+          on: {
+            input: function input($event) {
+              if ($event.target.composing) return;
+              _vm.$set(_vm.$store.state.item, "nome", $event.target.value);
+            }
+          }
+        })])], 1), _vm._v(" "), _c("div", {
+          staticClass: "form-group"
+        }, [_c("input-container-component", {
+          attrs: {
+            titulo: "Imagem",
+            id: "novoImagem",
+            "id-help": "novoImagemHelp",
+            "texto-ajuda": "Selecione uma imagem no formato PNG"
+          }
+        }, [_c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "file",
+            id: "inputId",
+            "aria-describedby": "novoImagemHelp",
+            placeholder: "Selecione uma imagem"
+          },
+          on: {
+            change: function change($event) {
+              return _vm.carregarImagem($event);
+            }
+          }
+        })]), _vm._v("\n                " + _vm._s(_vm.$store.state.item) + "\n            ")], 1)];
+      },
+      proxy: true
+    }, {
+      key: "rodape",
+      fn: function fn() {
+        return [_c("button", {
+          staticClass: "btn btn-secondary",
+          attrs: {
+            type: "button",
+            "data-bs-dismiss": "modal"
+          }
+        }, [_vm._v("Fechar")]), _vm._v(" "), _c("button", {
+          staticClass: "btn btn-primary",
+          attrs: {
+            type: "button"
+          },
+          on: {
+            click: function click($event) {
+              return _vm.atualizar();
+            }
+          }
+        }, [_vm._v("Atualizar")])];
+      },
+      proxy: true
+    }])
   })], 1);
 };
 var staticRenderFns = [];
@@ -7583,7 +7704,7 @@ var render = function render() {
         scope: "col"
       }
     }, [_vm._v(_vm._s(t.titulo))]);
-  }), _vm._v(" "), _vm.visualizar.visivel || _vm.atualizar || _vm.remover.visivel ? _c("th") : _vm._e()], 2)]), _vm._v(" "), _c("tbody", _vm._l(_vm.dadosFiltrados, function (obj, chave) {
+  }), _vm._v(" "), _vm.visualizar.visivel || _vm.atualizar.visivel || _vm.remover.visivel ? _c("th") : _vm._e()], 2)]), _vm._v(" "), _c("tbody", _vm._l(_vm.dadosFiltrados, function (obj, chave) {
     return _c("tr", {
       key: chave
     }, [_vm._l(obj, function (valor, chaveValor) {
@@ -7596,7 +7717,7 @@ var render = function render() {
           height: "30"
         }
       })]) : _vm._e()]);
-    }), _vm._v(" "), _vm.visualizar.visivel || _vm.atualizar || _vm.remover ? _c("td", [_vm.visualizar.visivel ? _c("button", {
+    }), _vm._v(" "), _vm.visualizar.visivel || _vm.atualizar.visivel || _vm.remover.visivel ? _c("td", [_vm.visualizar.visivel ? _c("button", {
       staticClass: "btn btn-outline-primary btn-sm",
       attrs: {
         "data-bs-toggle": _vm.visualizar.dataToggle,
@@ -7607,8 +7728,17 @@ var render = function render() {
           return _vm.setStore(obj);
         }
       }
-    }, [_vm._v("Visualizar")]) : _vm._e(), _vm._v(" "), _vm.atualizar ? _c("button", {
-      staticClass: "btn btn-outline-primary btn-sm"
+    }, [_vm._v("Visualizar")]) : _vm._e(), _vm._v(" "), _vm.atualizar.visivel ? _c("button", {
+      staticClass: "btn btn-outline-primary btn-sm",
+      attrs: {
+        "data-bs-toggle": _vm.atualizar.dataToggle,
+        "data-bs-target": _vm.atualizar.dataTarget
+      },
+      on: {
+        click: function click($event) {
+          return _vm.setStore(obj);
+        }
+      }
     }, [_vm._v("Atualizar")]) : _vm._e(), _vm._v(" "), _vm.remover.visivel ? _c("button", {
       staticClass: "btn btn-outline-danger btn-sm",
       attrs: {

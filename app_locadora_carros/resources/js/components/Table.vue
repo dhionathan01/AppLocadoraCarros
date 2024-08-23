@@ -4,7 +4,7 @@
             <thead>
                 <tr>
                     <th  v-for="t, key in titulos" :key="key" scope="col">{{ t.titulo }}</th>
-                    <th v-if="visualizar.visivel || atualizar || remover.visivel"></th>
+                    <th v-if="visualizar.visivel || atualizar.visivel || remover.visivel"></th>
                 </tr>
             </thead>
             <tbody>
@@ -16,25 +16,12 @@
                             <img :src="'/storage/'+valor" width="30" height="30">
                         </span>
                     </td>
-                    <td v-if="visualizar.visivel || atualizar || remover">
+                    <td v-if="visualizar.visivel || atualizar.visivel || remover.visivel">
                         <button v-if="visualizar.visivel" class="btn btn-outline-primary btn-sm" :data-bs-toggle="visualizar.dataToggle" :data-bs-target="visualizar.dataTarget" @click="setStore(obj)">Visualizar</button>
-                        <button v-if="atualizar" class="btn btn-outline-primary btn-sm">Atualizar</button>
+                        <button v-if="atualizar.visivel" class="btn btn-outline-primary btn-sm" :data-bs-toggle="atualizar.dataToggle" :data-bs-target="atualizar.dataTarget" @click="setStore(obj)">Atualizar</button>
                         <button v-if="remover.visivel" class="btn btn-outline-danger btn-sm" :data-bs-toggle="remover.dataToggle" :data-bs-target="remover.dataTarget"  @click="setStore(obj)">Remover</button>
                     </td>
                 </tr>
-                <!-- <tr v-for="obj in dados" :key="obj.id">
-                    <td v-if="titulos.includes(chave)" v-for="valor, chave in obj" :key="chave">
-                       <span v-if="chave == 'imagem'">
-                           <img :src="'/storage/'+valor" alt="" width="30" height="30">
-                       </span>
-                       <span v-else>
-                            {{ valor }}
-                       </span>
-                    </td>
-                     <th scope="row">{{ m.id }}</th>
-                    <td>{{ m.nome }}</td>
-                    <td> <img :src="'/storage/'+m.imagem" alt="" width="30px" height="30px"></td>
-                </tr> -->
             </tbody>
         </table>
     </div>
