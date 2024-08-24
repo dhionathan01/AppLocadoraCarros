@@ -6492,16 +6492,6 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  computed: {
-    token: function token() {
-      var token = document.cookie.split(';').find(function (indice) {
-        return indice.includes('token=');
-      });
-      token = token.split('=')[1];
-      token = 'Bearer ' + token;
-      return token;
-    }
-  },
   methods: {
     atualizar: function atualizar() {
       var _this = this;
@@ -6536,13 +6526,7 @@ __webpack_require__.r(__webpack_exports__);
       var url = "".concat(this.urlBase, "/").concat(this.$store.state.item.id);
       var formData = new FormData();
       formData.append('_method', 'delete');
-      var config = {
-        headers: {
-          'Accept': 'application/json',
-          'Authorization': this.token
-        }
-      };
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, formData, config).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, formData).then(function (response) {
         _this2.$store.state.transacao.status = 'sucesso';
         _this2.$store.state.transacao.mensagem = response.data.msg;
         _this2.carregarLista();
@@ -6579,13 +6563,7 @@ __webpack_require__.r(__webpack_exports__);
     carregarLista: function carregarLista() {
       var _this3 = this;
       var url = "".concat(this.urlBase, "?").concat(this.urlPaginacao).concat(this.urlFiltro);
-      var config = {
-        headers: {
-          'Accept': 'application/json',
-          'Authorization': this.token
-        }
-      };
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get(url, config).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(url).then(function (response) {
         _this3.marcas = response.data;
       })["catch"](function (error) {});
     },
@@ -6599,9 +6577,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('imagem', this.arquivoImagem[0]);
       var config = {
         headers: {
-          'Content-Type': 'multipart/form-data',
-          'Accept': 'application/json',
-          'Authorization': this.token
+          'Content-Type': 'multipart/form-data'
         }
       };
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(this.urlBase, formData, config).then(function (response) {
@@ -7895,6 +7871,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // });
 /* interceptar os request da aplicação */
 axios.interceptors.request.use(function (config) {
+  // definir para todas as requisições os parâmetros de accept e autorization
+  config.headers['Accept'] = 'application/json';
+  // recuperando token de autorização dos cookies:
+  var token = document.cookie.split(';').find(function (indice) {
+    return indice.includes('token=');
+  });
+  token = token.split('=')[1];
+  token = 'Bearer ' + token;
+  config.headers.Authorization = token;
   console.log('Interceptando o request antes do envio', config);
   return config;
 }, function (error) {
