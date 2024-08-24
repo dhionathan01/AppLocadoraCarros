@@ -7726,7 +7726,7 @@ var render = function render() {
     }, [_vm._l(obj, function (valor, chaveValor) {
       return _c("td", {
         key: chaveValor
-      }, [_vm.titulos[chaveValor].tipo == "texto" ? _c("span", [_vm._v(_vm._s(valor))]) : _vm._e(), _vm._v(" "), _vm.titulos[chaveValor].tipo == "data" ? _c("span", [_vm._v(_vm._s("..." + valor))]) : _vm._e(), _vm._v(" "), _vm.titulos[chaveValor].tipo == "imagem" ? _c("span", [_c("img", {
+      }, [_vm.titulos[chaveValor].tipo == "texto" ? _c("span", [_vm._v(_vm._s(valor))]) : _vm._e(), _vm._v(" "), _vm.titulos[chaveValor].tipo == "data" ? _c("span", [_vm._v(_vm._s(_vm._f("formataDataTempoGlobal")(valor)))]) : _vm._e(), _vm._v(" "), _vm.titulos[chaveValor].tipo == "imagem" ? _c("span", [_c("img", {
         attrs: {
           src: "/storage/" + valor,
           width: "30",
@@ -7837,6 +7837,21 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('paginate-component', (__w
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].filter('formataDataTempoGlobal', function (dateValue) {
+  if (!dateValue) {
+    return '';
+  }
+  dateValue = dateValue.split('T');
+  var data = dateValue[0];
+  var tempo = dateValue[1];
+  // Formatando data
+  data = data.split('-');
+  data = "".concat(data[2], "/").concat(data[1], "/").concat(data[0]);
+  // Formatando tempo
+  tempo = tempo.split('.');
+  tempo = tempo[0];
+  return "".concat(data, " ").concat(tempo);
+});
 var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
   el: '#app',
   store: store
