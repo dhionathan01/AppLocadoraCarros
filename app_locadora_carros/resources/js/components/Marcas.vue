@@ -135,6 +135,8 @@
         </modal-component>
         <modal-component id="modalMarcaAtualizar" titulo="Atualizar marca">
             <template v-slot:alertas>
+                <alert-component tipo="success" titulo="Transação realizada com sucesso" :detalhes="$store.state.transacao" v-if="$store.state.transacao.status == 'sucesso'"></alert-component>
+                <alert-component tipo="danger" titulo="Erro na transação" :detalhes="$store.state.transacao" v-if="$store.state.transacao.status == 'erro'"></alert-component>
             </template>
             <template v-slot:conteudo>
                 <div class="form-group">
@@ -150,7 +152,6 @@
                         <input type="file" class="form-control" id="inputFileAtualizarImagem" aria-describedby="novoImagemHelp"
                             placeholder="Selecione uma imagem" @change="carregarImagem($event)">
                     </input-container-component>
-                    {{ $store.state.item }}
                 </div>
             </template>
             <template v-slot:rodape>
@@ -189,10 +190,6 @@ export default {
     },
     methods: {
         atualizar() {
-            console.log('nome atualizar', this.$store.state.item.nome);
-            console.log('imagem', this.arquivoImagem);
-            console.log('verbo http: patch');
-
             let formData = new FormData();
             formData.append('_method', 'patch');
             formData.append('nome', this.$store.state.item.nome);
@@ -210,13 +207,16 @@ export default {
             }
             axios.post(url, formData, config)
                 .then((response) => {
-                    console.log('Atualizado', response);
                     //limpar o campo de seleção de arquivos
                     inputFileAtualizarImagem.value = ''
+                    this.$store.state.transacao.status = 'sucesso';
+                    this.$store.state.transacao.mensagem = 'Registro de marca atualizado com sucesso!'
                     this.carregarLista()
                 })
                 .catch((errors) => {
-                    console.log('Erro de atualização', errors.response)
+                    this.$store.state.transacao.status = 'erro';
+                    this.$store.state.transacao.mensagem = errors.response.data.message;
+                    this.$store.state.transacao.dados = errors.response.data.errors;
                 })
         },
         remover() {
