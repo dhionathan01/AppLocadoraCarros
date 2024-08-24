@@ -7839,6 +7839,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
   \***********************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+  axios = _require["default"];
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 try {
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
@@ -7891,6 +7893,15 @@ axios.interceptors.response.use(function (response) {
   console.log('Interceptando o response antes da aplicação', response);
   return response;
 }, function (error) {
+  if (error.response.status == 401 && error.response.data.message == 'Token has expired') {
+    console.log('Fazer uma nova requisição para rota refresh');
+    axios.post('http://localhost:8000/api/refresh').then(function (response) {
+      console.log('Refersh com sucesso:', response);
+      document.cookie = "token=".concat(response.data.token, ";SameSite=Lax");
+      console.log('Token atualizado:', response.data.token);
+      window.location.reload();
+    });
+  }
   console.log('Erro na respostas', error);
   return Promise.reject(error);
 });

@@ -1,3 +1,5 @@
+const { default: axios } = require('axios');
+
 window._ = require('lodash');
 
 try {
@@ -58,6 +60,18 @@ axios.interceptors.response.use(
 
      },
     error => {
+        if (error.response.status == 401 && error.response.data.message == 'Token has expired') {
+            console.log('Fazer uma nova requisição para rota refresh');
+
+            axios.post('http://localhost:8000/api/refresh')
+                .then(response => {
+                    console.log('Refersh com sucesso:', response);
+                    document.cookie = `token=${response.data.token};SameSite=Lax`
+                    console.log('Token atualizado:', response.data.token)
+                    window.location.reload()
+                })
+
+        }
         console.log('Erro na respostas', error)
         return Promise.reject(error)
     }
