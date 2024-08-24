@@ -7882,27 +7882,20 @@ axios.interceptors.request.use(function (config) {
   token = token.split('=')[1];
   token = 'Bearer ' + token;
   config.headers.Authorization = token;
-  console.log('Interceptando o request antes do envio', config);
   return config;
 }, function (error) {
-  console.log('Erro na requisição', error);
   return Promise.reject(error);
 });
 /* Interceptar os responses da aplicação */
 axios.interceptors.response.use(function (response) {
-  console.log('Interceptando o response antes da aplicação', response);
   return response;
 }, function (error) {
   if (error.response.status == 401 && error.response.data.message == 'Token has expired') {
-    console.log('Fazer uma nova requisição para rota refresh');
     axios.post('http://localhost:8000/api/refresh').then(function (response) {
-      console.log('Refersh com sucesso:', response);
       document.cookie = "token=".concat(response.data.token, ";SameSite=Lax");
-      console.log('Token atualizado:', response.data.token);
       window.location.reload();
     });
   }
-  console.log('Erro na respostas', error);
   return Promise.reject(error);
 });
 
